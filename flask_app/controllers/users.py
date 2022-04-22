@@ -53,9 +53,19 @@ def dashboard():
     users = User.get_all()
     return render_template('dashboard.html', user = user, users = users)
 
+# About Us Route 
+@app.route('/contact')
+def contact():
+    return render_template('contact_us.html')
+
 @app.route('/add_user')
 def create():
     return render_template('C.html')
+
+# coding.template
+@app.route('/coding')
+def coding():
+    return render_template('coding.html')
 
 
 @app.route('/create_user', methods=['POST'])

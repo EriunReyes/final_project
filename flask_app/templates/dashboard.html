@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styling.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Dashboard</title>
 </head>
 <body style="background-color:#3f3f3f;">
     <div>
@@ -22,9 +23,10 @@
 
     <nav>
         <a href="#">HOME</a>
-        <a href="#">CODING</a>
+        <a href="/coding">CODING</a>
         <a href="#">COMMUNITY</a>
         <a href="/">LOGOUT</a>
+        <a href="/contact">CONTACT US</a>
         <div id="indicator"></div>
     </nav>
     <div id="banner">
@@ -74,6 +76,39 @@
         </ul>
     </div>
     </div>
-    <!--  -->
+    <!-- Memes -->
+    <h4 class="meme_header">Funny Memes</h4>
+    <div class="meme_container">
+        <img src="{{ url_for('static', filename='codecafejokes2.png') }}">
+        <img src="{{ url_for('static', filename='codecafephotos_jokes.jpeg') }}">
+        <img src="{{ url_for('static', filename='codecafephotos3.jpg') }}">
+        <img src="{{ url_for('static', filename='codecafephotosjokes1.jpg') }}">
+    </div>
+
+
+    <div id="container_footer">
+        <div id="header" class="grid-item">
+            <h1>About us</h1>
+            <p>It's a cafe website made for coders to experience the fabulous environment to study and have a fun time with other coders.
+                CodeCafe will innovate the way cafe and code it's connected.
+                In CodeCafe, we provide the best accommodation areas to study and comfortability. It is important to feel comfortable from the outside to feel the same way as on the inside. CodeCafe is where nobody will distract you from your learning experience. The environment is based on a way where you can concentrate to the fullest.
+                CodeCafe avoids stimulations that can be an obstacle for you. Here, you can disconnect from the world and connect yourself with your code. CodeCafe also takes care of groups working together.
+                That's why we offer the best quality room to keep coders communicating with each other and working in the best way possible. </p>
+        </div>
+        <div id="our-story" class="grid-item">
+            <h2>Our Vision</h2> Enrich future programmers to grow every day to reach something much better.
+        </div>
+        <div id="our-values" class="grid-item">
+            <h2>Our Values</h2>
+            <ul>
+                <li>Kindness</li>
+                <li>Honesty</li>
+                <li>Respect</li>
+            </ul>
+        </div>
+        <div id="footer" class="grid-item">
+            <p> Copyright 2021</p>
+        </div>
+    </div>
 </body>
 </html>

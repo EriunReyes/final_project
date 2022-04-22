@@ -70,19 +70,24 @@
 
         <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
-            <form action="login" method="post">
-                <!-- 2 column grid layout with text inputs for the first and last names -->
-
+            <form action="/login" method="post">
+                {% with messages = get_flashed_messages(category_filter=['login'])%}     <!-- declare a variable called messages -->
+                {% if messages %}                            <!-- check if there are any messages -->
+                    {% for message in messages %}            <!-- loop through the messages -->
+                        <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                <input type="email" class="form-control" placeholder="Email address">
-                <label class="form-label" for="form3Example3"></label>
+                <input type="email" class="form-control" placeholder="Email address" name="email">
+                <label class="form-label"></label>
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                <input type="password" class="form-control" placeholder="Password">
-                <label class="form-label" for="form3Example4"></label>
+                <input type="password" class="form-control" placeholder="Password" name="password">
+                <label class="form-label"></label>
                 </div>
 
                 <!-- Submit button -->

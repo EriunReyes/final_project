@@ -96,7 +96,20 @@ background-color: rgb(62, 128, 0);
 nav a:nth-child(4):after {
 background-color: rgb(197, 142, 40);
 }
-
+nav a:nth-child(5):before {
+background-color: rgb(128, 0, 0);
+}
+        
+nav a:nth-child(5):after {
+background-color: rgb(134, 40, 197);
+}
+/* nav a:nth-child(6):before {
+background-color: rgb(128, 126, 0);
+}
+            
+nav a:nth-child(6):after {
+background-color: rgb(40, 147, 197);
+} */
 #indicator {
 position: absolute;
 left: 5%;
@@ -122,19 +135,29 @@ background: linear-gradient(130deg, yellow, red);
 }
 
 nav a:nth-child(2):hover ~ #indicator {
-left: 28%;
+left: 23%;
 background: linear-gradient(130deg, #00e2ff, #89ff00);
 }
 
 nav a:nth-child(3):hover ~ #indicator {
-left: 55%;
+left: 45%;
 background: linear-gradient(130deg, purple, palevioletred);
 }
 
 nav a:nth-child(4):hover ~ #indicator {
-left: 84%;
+left: 67%;
 background: linear-gradient(130deg, rgb(199, 139, 27), rgb(112, 216, 117));
     }
+
+nav a:nth-child(5):hover ~ #indicator {
+left: 87%;
+background: linear-gradient(130deg, rgb(27, 87, 199), rgb(176, 216, 112));
+    }
+
+/* nav a:nth-child(6):hover ~ #indicator {
+left: 89%;
+background: linear-gradient(130deg, rgb(19, 18, 18), rgb(216, 112, 185));
+    } */
 
 
 #banner {
@@ -206,4 +229,32 @@ padding: 10px;
     border:solid;
     background-color: #FBF4F0;
     padding: 5px;
+}
+/* Meme */
+.meme_container {
+    height: 280px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+img {
+    width: 300px;
+    height: 300px;
+    border: solid;
+    margin: 5px;
+}
+
+
+.meme_header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* footer */
+
+#container_footer{
+    margin:50px;
+    display: flex;
 }
