@@ -7,18 +7,27 @@ height: 100%;
 
 body {
 margin: 0;
-background-color: #292929;
+background-color: #3f3f3f;
 overflow: hidden;
 }
-
+/* .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-left: 0px;
+}  */
 nav {
 position: absolute;
-top: 10%;
+top: 7%;
 right: 0;
-left: 0;
+/* left: 0; */
 width: 319px;
 display: table;
-margin: 0 auto;
+margin-right: 0px;
 }
 
 nav a {
@@ -139,6 +148,7 @@ background: linear-gradient(130deg, rgb(199, 139, 27), rgb(112, 216, 117));
 #banner img {
     width: 500px;
     height: 500px;
+    border: solid;
 }
 
 .container {
@@ -193,6 +203,7 @@ padding: 10px;
 }
 
 .grid-item {
+    border:solid;
     background-color: #FBF4F0;
     padding: 5px;
 }
