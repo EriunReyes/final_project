@@ -77,6 +77,17 @@
     </div>
     </div>
     <!-- Memes -->
+    {% for user in users %}
+    {% if user_id == session.user_id %}
+    {% if user.liked == 0%}
+    <a href="/show/likes/{{user.id}}" class="btn btn-primary">Likes</a>
+        {%endif%}
+        {% if user.liked == 1%}
+    <a href="/show/unlikes/{{user.id}}" class="btn btn-primary">Likes</a>
+        {% endif %}
+        {% endif %}
+    {% endfor %}
+    
     <h4 class="meme_header">Funny Memes</h4>
     <div class="meme_container">
         <img src="{{ url_for('static', filename='codecafejokes2.png') }}">

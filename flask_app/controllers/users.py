@@ -102,6 +102,23 @@ def update():
     User.update(request.form)
     return redirect('/dashboard')
 
+@app.route('/show/likes/<int:user_id>')
+def likes(user_id):
+    likes_data = {
+        'user_id': session['user_id'],
+    }
+    likes = User.create_likes(likes_data)
+    return redirect('/dashboard')
+
+
+@app.route('/show/unlikes/<int:user_id>')
+def unlikes(user_id):
+    likes_data = {
+        'user_id': session['user_id'],
+    }
+    likes = User.delete_likes(likes_data)
+    return redirect('/dashboard')
+
 
 
 @app.route('/delete/<int:id>')

@@ -51,6 +51,12 @@ class User:
             return False
         return cls(results[0])
 
+    @classmethod
+    def create_likes():
+        query ='INSERT INTO(user_id) VALUES (%(user_id)s);'
+        return connectToMySQL(db).query_db(query, data)
+
+
 
     @classmethod  #This method should updated the columns from my users table
     def update(cls, data):
