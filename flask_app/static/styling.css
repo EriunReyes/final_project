@@ -6,8 +6,8 @@ body {
 h1 {
     background-color: #6D3ACF;
     padding: 20px;
-    color: #FFFFFF;
-    margin: 0px;
+    text-align: center;
+    margin-left: -15px;
 }
 
 .grid-container {

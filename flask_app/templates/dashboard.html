@@ -22,11 +22,16 @@
     </div>
 
     <nav>
-        <a href="#">HOME</a>
+        <a href="/dashboard">HOME</a>
         <a href="/coding">CODING</a>
-        <a href="#">COMMUNITY</a>
-        <a href="/">LOGOUT</a>
+        <a href="/community">COMMUNITY</a>
         <a href="/contact">CONTACT US</a>
+        <a href = "/messages"> INBOX</a>
+        <a href = "/questions/me">MY QUESTIONS</a>
+        <a href = "/questions"> QUESTIONS</a>
+        <a href="/single/{{ user.id }}">SINGLE QUESTION </a>
+        <a href="/api"> FUN API</a>
+        <a href="/">LOGOUT</a>
         <div id="indicator"></div>
     </nav>
     <div id="banner">
@@ -118,7 +123,7 @@
             </ul>
         </div>
         <div id="footer" class="grid-item">
-            <p> Copyright 2021</p>
+            <p><strong> Copyright 2021</strong></p>
         </div>
     </div>
 </body>

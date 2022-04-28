@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body style="background-color:#332c2c;">
+    <div>
+        <nav class="navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <p style="font-size: 50px;">CodeCafe</p>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="d-flex justify-content-between align-items-center py-2 px-5">
+        <h1 class="text-center">Code Cafe</h1>
+        <h2 class="text-center"><strong>Welcome {{user.first_name}}!!!</strong></h2>
+        <a href="/logout" class="btn btn-info">Logout</a>
+    </div>
+    <hr>
+    <main class="d-flex justify-content-around">
+        {% with messages = get_flashed_messages(category_filter=['message'])%}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p class="col-5 bg-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+        <div class="col-5 bg-dark text-light">
+            <h2 class="text-center">{{messages|length}} messages for you</h2>
+            <hr class="bg-warning">
+
+            {% for message in messages %} <!-- messages in controllers-->
+            {% if message.receiver_id == user.id%}
+            <div class="card bg-primary my-2" onclick="toggle('message{{message.id}}')">
+                <div class="card-body">
+                    <h3 class="card-title">{{message.sender}} said {{message.time_span()}}:</h3>
+                    <p class="card-text">{{message.content}}</p>
+                </div>
+                <div hidden id="message{{message.id}}">
+                    <h4>Reply</h4>
+                    <form class=" p-2"action="/post_message" method="post">
+                        <input type="hidden" name="sender_id" value={{message.receiver_id}}>
+                        <input type="hidden" name="receiver_id" value={{message.sender_id}}>
+                        <label for="receiver_id">Message {{message.sender}}:</label>
+                        <textarea class="form-control" name="content" id="" cols="30" rows="5"></textarea>
+                        <input type="submit" value="Message" class="btn btn-warning">
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <a href="/destroy/message/{{message.id}}" class="btn btn-danger">Delete</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="col-5 bg-dark text-light">
+            <h2 class="text-center">Send a Message:</h2>
+            <hr class="bg-warning">
+            {% for u in users %} <!-- shows all the users, in controllers-->
+                {% if u.id != session.user_id %}
+                <form class=" p-2"action="/post_message" method="post">
+                    <input type="hidden" name="sender_id" value={{session.user_id}}>
+                    <input type="hidden" name="receiver_id" value={{u.id}}>
+                    <label for="receiver_id">Message {{u.first_name}}:</label>
+                    <textarea class="form-control" name="content" id="" cols="30" rows="3"></textarea>
+                    <input type="submit" value="Message" class="btn btn-warning">
+                </form>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+    <div style="margin: 20px;">
+        <a href="/dashboard" style="text-decoration: none;">Go Back</a>
+    </div>
+</body>
+<script>
+    function toggle(id){
+        document.getElementById(id).hidden=!document.getElementById(id)
+    }
+</script>
+</html>

@@ -3,7 +3,7 @@ from flask import flash
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-db = 'belt_db'
+db = 'final_project'
 class User:
     def __init__(self, data):
         self.id = data['id']
@@ -13,11 +13,21 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        
+        
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
 
     @classmethod # this method should insert all my information from users to the database
     def save(cls, data):
         query = 'INSERT INTO users (first_name, last_name, email, password) VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);'
         return connectToMySQL(db).query_db(query, data)
+
+    @classmethod # this method should insert all my information from users to the database
+    def savde(cls, data):
+        query = 'INSERT INTO users (first_name, last_name, email) VALUES (%(first_name)s, %(last_name)s, %(email)s);'
+        return connectToMySQL(db).query_db(query, data)
+
 
 
 
@@ -51,10 +61,10 @@ class User:
             return False
         return cls(results[0])
 
-    @classmethod
-    def create_likes():
-        query ='INSERT INTO(user_id) VALUES (%(user_id)s);'
-        return connectToMySQL(db).query_db(query, data)
+    # @classmethod
+    # def create_likes():
+    #     query ='INSERT INTO(user_id) VALUES (%(user_id)s);'
+    #     return connectToMySQL(db).query_db(query, data)
 
 
 
@@ -74,39 +84,38 @@ class User:
     def validate_user(user):
         is_valid = True # we assume this is true
         if len(user['first_name']) < 3:
-            flash("first name must be at least 3 characters.", 'register_user')
+            flash("first name must be at least 3 characters.", 'register')
             is_valid = False
         if len(user['last_name']) < 3:
-            flash("last name must be at least 3 characters.", 'register_user')
+            flash("last name must be at least 3 characters.", 'register')
             is_valid = False
         if len(user['email']) < 3:
-            flash("email must be at least 3 characters.", 'register_user')
+            flash("email must be at least 3 characters.", 'register')
             is_valid = False
         query = 'SELECT * FROM users WHERE email= %(email)s;'  #this specify the email from our query
         results = connectToMySQL(db).query_db(query, user)   
         if not EMAIL_REGEX.match(user['email']):           #if the email.regex thoses not match with the input.->A flash will show up
-            flash('Invalid email address', ' register_user')                  
+            flash('Invalid email address', ' register')                  
             is_valid = False 
 
         if len(results) >= 1:
-            flash('This email is already taken', 'register_user')
+            flash('This email is already taken', 'register')
             is_valid = False
 
         if len(user['password']) < 8:
-            flash("password must be at least 8 characters.", 'register_user')
+            flash("password must be at least 8 characters.", 'register')
             is_valid = False
 
         if re.search('[0-9]',user['password']) is None:   #if an integer is not in->Will flash an error.
-            flash("Make sure your password has a number in it", 'register_user')
+            flash("Make sure your password has a number in it", 'register')
             is_valid = False
 
         # if re.search('[A-Z]', user['password']) is None: #If there's not uppercase->will flash an error.
-        #     flash('Make sure you enter upper case a letter', ' register_user')
+        #     flash('Make sure you enter upper case a letter', ' register')
         #     is_valid = False
 
-        if user['password'] != user['confirm_password']: # If password is not the same as confirm_password.-> return a flash message
-            flash("Passwords don't match","register_user")
+        if user['password'] != user['confirm_password']:
+            flash("Passwords don't match","register")
             is_valid = False
-        return is_valid  # If all this True.->No validation should show up.
-
+        return is_valid  
 
