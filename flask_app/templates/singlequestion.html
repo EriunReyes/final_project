@@ -39,7 +39,7 @@
         {{answer.content}}
         <div>
             {% if answer.user_id == session.user_id%}
-            <form action="/questions/delete/{{answer.id}}" method="POST">
+            <form action="/questions/answer/{{answer.id}}" method="POST">
                 <input type="submit" value="DELETE">
                 <input type="hidden" name="question_id" value="{{question.id}}">
             </form>
