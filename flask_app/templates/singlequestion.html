@@ -21,10 +21,8 @@
     </div>
     <div id="question">
         <div>
-            <p style="color: white">
-                {%for alls in all%}
+            <p style="color: white; text-align: center">
                 {{question.content}}
-                {%endfor%}
             </p>
         </div>
     </div>
@@ -33,20 +31,16 @@
         <input type="hidden" name="question_id" value="{{question.id}}">
         <input type="submit" value="Reply">
     </form>
-    {% for answer in answers%}
-    {%for user in all_users %}
-    <div style="color:gray">
-        {{answer.content}}
-        <div>
-            
-            <a href="/destroy/{{user.id}}" class="btn btn-primary">Delete</a>
-        </div>
-    </div>
-    {% endfor %}
-    {% endfor %}
-
     <div style="margin: 20px;">
         <a href="/dashboard" style="text-decoration: none;">Go Back</a>
     </div>
+    {% for answer in answers%}
+    <div style="color:gray">
+        {{answer.content}}
+        <div>
+            <a href="/single/{{answer.id}}" class="btn btn-primary">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
 </body>
 </html>

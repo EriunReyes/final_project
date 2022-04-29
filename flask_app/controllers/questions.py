@@ -46,8 +46,8 @@ def post_question():
     Question.save(data)
     return redirect('/questions')
 
-@app.route('/questions/delete', methods = ['POST'])
-def delete_question():
+@app.route('/questions/delete/<int:id>', methods = ['POST'])
+def delete_question(id):
     if 'user_id' not in session:
         return redirect('/')
 
@@ -91,15 +91,16 @@ def post_answer():
         "user_id": session['user_id']
     }
     Answer.save(data)
-    all = Answer.get_all()
-    return redirect('/dashboard')
-
-@app.route('/destroy/<int:id>')
-def destroy(id):
-    if 'user_id' not in session:
-        return redirect('/logout')
-    data = {
-        'id':id
-    }
     Answer.destroy(data)
-    return redirect('/questions/me')
+    return redirect('/questions' + data["question_id"])
+
+
+# @app.route('/destroy/<int:id>')
+# def destroy(id):
+#     if 'user_id' not in session:
+#         return redirect('/logout')
+#     data = {
+#         'id':id
+#     }
+#     Answer.destroy(data)
+#     return redirect('/single/{{id}}')

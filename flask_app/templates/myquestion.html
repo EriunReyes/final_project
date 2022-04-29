@@ -34,11 +34,11 @@
             {% if user.id == session.user_id %}
             <button onclick="toggle('q{{question.id}}');toggle('b{{question.id}}');toggle('t{{question.id}}')" id="b{{question.id}}">edit</button>
             {%endif%}
-            <form action = "/questions/delete" method="POST">
+            <form action = "/questions/delete/{{question.user_id}}" method="POST">
                 <input type="hidden" name="id" value="{{question.id}}">
-                <!-- <input type="submit" value="DELETE"> -->
+                <input type="submit" value="DELETE"> 
             </form>
-            <a href="/destroy/{{question.user_id}}" class="btn btn-primary" style=" margin-top: 10px">Delete</a>
+            <!-- <a href="/questions/delete/{{question.id}}" class="btn btn-primary" style="margin-top: 10px">Delete</a>  -->
         </div>
         {% endfor %}
     </div>

@@ -42,7 +42,7 @@ class Answer:
 
     @classmethod
     def destroy(cls,data):
-        query = "DELETE FROM answers WHERE answer.id = %(id)s;"
+        query = "DELETE FROM answers WHERE answers.id = %(id)s;"
         return connectToMySQL(cls.db).query_db(query,data)
 
     @staticmethod #This method is static and it's not alterable by @classmethod/Using validations through Conditionals
