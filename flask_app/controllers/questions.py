@@ -52,10 +52,11 @@ def delete_question(id):
         return redirect('/')
 
     data = {
-        "id": request.form['id']
+        "id": id
     }
-    Question.destroy(data)
-    return redirect('/questions/me')
+    question_id = request.form['question_id']
+    Answer.destroy(data)
+    return redirect(f'/single/{question_id}')
 
 @app.route('/questions/edit', methods = ['POST'])
 def edit_question():
@@ -73,11 +74,15 @@ def edit_question():
 def render_single_question(id):
     if 'user_id' not in session:
         return redirect('/')
+        data = {
+        'id': session['user_id']
+    }
     question = Question.get_by_id(id)
     answers = Answer.get_by_question({
         "question_id": id
     })
-    return render_template("singlequestion.html", question=question, answers=answers)
+    users = User.get_all()
+    return render_template("singlequestion.html", question=question, answers=answers, users = users)
 
 @app.route('/questions/answer', methods=['POST'])
 def post_answer():
@@ -90,9 +95,11 @@ def post_answer():
         "content": request.form['content'],
         "user_id": session['user_id']
     }
+    id = request.form['question_id']
     Answer.save(data)
     Answer.destroy(data)
-    return redirect('/questions' + data["question_id"])
+
+    return redirect(f'/single/{id}')
 
 
 # @app.route('/destroy/<int:id>')
